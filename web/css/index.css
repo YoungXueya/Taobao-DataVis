@@ -1,0 +1,32 @@
+@CHARSET "UTF-8";
+html{font-size:16px;}
+body{
+
+}
+#main{
+	-moz-box-flex:1;
+    -webkit-box-flex:1;
+    box-flex:1;
+	height:100%;
+	background:gray;
+}
+
+#mFilter{
+	-moz-box-flex:1;
+    -webkit-box-flex:1;
+    box-flex:1;
+	height:100%;
+	background:pink;
+}
+#dFilter{
+    background: chartreuse;
+}
+.cont{
+
+}
+.up{
+	display:box;
+	display:-webkit-box;
+	display:-moz-box;
+	
+}
