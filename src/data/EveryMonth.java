@@ -36,9 +36,9 @@ public class EveryMonth extends HttpServlet {
 
         try {
             for (int i = 0; i <7; i++) {
-             String sql = "select * from user_log where time_stamp like '"+month+"%'";
+             String sql = "select * from user_log ,user_info where time_stamp like '"+month+"%'  and user_info.user_id=user_log.user_id group by user_info.user_id";
 
-                System.out.println(sql);
+
                 rs = register.executeQuery(sql);
 
                 month=month+1;

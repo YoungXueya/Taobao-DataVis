@@ -1,14 +1,14 @@
 @CHARSET "UTF-8";
-html{font-size:16px;}
+html{font-size:16px;background-color: #eee}
 body{
-
+	margin:0;
 }
 #main{
 	-moz-box-flex:1;
     -webkit-box-flex:1;
     box-flex:1;
 	height:100%;
-	background:gray;
+	/*background:gray;*/
 }
 
 #mFilter{
@@ -16,17 +16,16 @@ body{
     -webkit-box-flex:1;
     box-flex:1;
 	height:100%;
-	background:pink;
+	/*background:pink;*/
 }
 #dFilter{
-    background: chartreuse;
+    /*background: chartreuse;*/
 }
 .cont{
 
 }
 .up{
-	display:box;
+	/*display:box;*/
 	display:-webkit-box;
 	display:-moz-box;
-	
 }

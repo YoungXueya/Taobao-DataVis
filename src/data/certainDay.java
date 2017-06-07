@@ -43,6 +43,7 @@ public class certainDay extends HttpServlet {
         int[] genderData = new int[3];
 
 
+
         try {
             for (int i = 1; i < 9; ++i) {
 

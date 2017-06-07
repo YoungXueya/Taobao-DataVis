@@ -43,18 +43,58 @@ public class EverydayData extends HttpServlet {
 
         try {
             for (int i = 0; i <185; i++) {
-             String sql = "select * from user_log where time_stamp= (select min(time_stamp) from user_log where time_stamp >"+time+")";
+                int rowCount=0;
+             String sql = "select * from user_log,user_info where time_stamp= (select min(time_stamp) from user_log where time_stamp >"+time+") and user_info.user_id=user_log.user_id group by user_info.user_id";
+             rs = register.executeQuery(sql);
+                String total ="insert into day_data (total) values('" + rowCount + "') where time_stamp ="+time+"";
 
-
-                rs = register.executeQuery(sql);
 
               if(  rs.next()) {
                   time = rs.getInt("time_stamp");
               }
+              else{
+                  sql="select min(time_stamp) from user_log where time_stamp>"+time;
+                  ResultSet resultSet=register.executeQuery(sql);
+                  if(resultSet.next())
+                  time=resultSet.getInt("min(time_stamp)");
+              }
                 rs.last();
-                int rowCount = rs.getRow();
+                rowCount = rs.getRow();
                 day[i] = rowCount;
+
                 System.out.println(time);
+
+
+            for (int m = 1; m < 97; ++m) {
+
+                int Count=0;
+                String sql1 = "select * from user_info,user_log where user_info.user_id=user_log.user_id  and time_stamp ="+time+" and age_range="+m+" group by user_info.user_id";
+                String agei = "insert into day_data (age" + i + ",day) values('" + Count + "','" + time + "') ";
+
+                System.out.println(sql);
+                rs = register.executeQuery(sql);
+                if(rs.next()) {
+                    rs.last();
+                    Count = rs.getRow();
+                    register.update(agei);
+                }else {
+                    register.update(agei);
+                }
+            }
+
+
+//            for (int i = 0; i < 3; i++) {
+//                String sql = "select * from user_info,user_log where user_info.user_id=user_log.user_id  and time_stamp ="+time_stamp+" and gender="+i+" group by user_info.user_id";
+//              rs = register.executeQuery(sql);
+//                if(rs.next()) {
+//                    rs.last();
+//                    int rowCount = rs.getRow();
+//                    genderData[i] = rowCount;
+//                }else {
+//                    genderData[i]=0;
+//                }
+//                System.out.println(genderData[i]);
+//            }
 
                 //time=rs.getInt("time_stamp");
 

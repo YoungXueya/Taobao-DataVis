@@ -17,7 +17,7 @@ public class DB {
 
     //  数据库的凭据
     static final String USER = "root";
-    static final String PASS = "1111";
+    static final String PASS = "1234";
     
     
     Connection conn=null;
