@@ -20,7 +20,7 @@ import java.util.Date;
 /**
  * Created by 雪亚 on 2017/5/4.
  */
-@WebServlet("/certainDay.do")
+@WebServlet("/certainDay.do1")
 public class certainDay extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

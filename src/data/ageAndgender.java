@@ -16,7 +16,7 @@ import java.sql.SQLException;
 /**
  * Created by 雪亚 on 2017/5/4.
  */
-@WebServlet("/age_gender.do")
+@WebServlet("/age_gender.do1")
 public class ageAndgender extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
