@@ -44,7 +44,7 @@ public class EverydayData extends HttpServlet {
         try {
             for (int i = 0; i <185; i++) {
                 int rowCount=0;
-             String sql = "select * from user_log,user_info where time_stamp= (select min(time_stamp) from user_log where time_stamp >"+time+") and user_info.user_id=user_log.user_id group by user_info.user_id";
+             String sql = "select * from user_log where time_stamp= (select min(time_stamp) from user_log where time_stamp >"+time+") ";
              rs = register.executeQuery(sql);
                 String total ="insert into day_data (total) values('" + rowCount + "') where time_stamp ="+time+"";
 
@@ -61,50 +61,50 @@ public class EverydayData extends HttpServlet {
                 rs.last();
                 rowCount = rs.getRow();
                 day[i] = rowCount;
-                 String totalNum = "insert into day_data (total,day) values('" + rowCount + "','" + time + "') ";
+                String totalNum = "update  day_data  set total = '"+rowCount+"' where day = '"+time+"';";
 
                 register.update(totalNum);
                 System.out.println(time);
 
 
-            for (int m = 0; m < 7; m++) {
-
-                int Count=0;
-                String sql1 = "select * from user_info,user_log where user_info.user_id=user_log.user_id  and time_stamp ="+time+" and age_range="+m+" group by user_info.user_id";
-
-
-
-                System.out.println(sql1);
-                rs = register.executeQuery(sql1);
-                if(rs.next()) {
-                    rs.last();
-                    Count = rs.getRow();
-                    System.out.println(Count);
-                    String age2="update  day_data  set age"+m+" = '"+Count+"' where day = '"+time+"';";
-                    register.update(age2);
-                }else {
-                    //register.update(age1);
-                }
-            }
-            for (int n = 0; n < 3; n++) {
-               int Count=0;
-                String sql2 = "select * from user_info,user_log where user_info.user_id=user_log.user_id  and time_stamp ="+time+" and gender="+n+" group by user_info.user_id";
-
-
-
-                System.out.println(sql2);
-                rs = register.executeQuery(sql2);
-                if(rs.next()) {
-                    rs.last();
-                    Count = rs.getRow();
-                    System.out.println(Count);
-                    String gender="update  day_data  set gender"+n+" = '"+Count+"' where day = '"+time+"';";
-                    register.update(gender);
-                }else {
-
-                }
-               // System.out.println(genderData[i]);
-            }
+//            for (int m = 0; m < 7; m++) {
+//
+//                int Count=0;
+//                String sql1 = "select * from user_info,user_log where user_info.user_id=user_log.user_id  and time_stamp ="+time+" and age_range="+m+" group by user_info.user_id";
+//
+//
+//
+//                System.out.println(sql1);
+//                rs = register.executeQuery(sql1);
+//                if(rs.next()) {
+//                    rs.last();
+//                    Count = rs.getRow();
+//                    System.out.println(Count);
+//                    String age2="update  day_data  set age"+m+" = '"+Count+"' where day = '"+time+"';";
+//                    register.update(age2);
+//                }else {
+//                    //register.update(age1);
+//                }
+//            }
+//            for (int n = 0; n < 3; n++) {
+//               int Count=0;
+//                String sql2 = "select * from user_info,user_log where user_info.user_id=user_log.user_id  and time_stamp ="+time+" and gender="+n+" group by user_info.user_id";
+//
+//
+//
+//                System.out.println(sql2);
+//                rs = register.executeQuery(sql2);
+//                if(rs.next()) {
+//                    rs.last();
+//                    Count = rs.getRow();
+//                    System.out.println(Count);
+//                    String gender="update  day_data  set gender"+n+" = '"+Count+"' where day = '"+time+"';";
+//                    register.update(gender);
+//                }else {
+//
+//                }
+//               // System.out.println(genderData[i]);
+//            }
 
 
             }
